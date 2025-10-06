@@ -1,2 +1,219 @@
 # ContentTokens
+
 💬 Dynamic placeholders for Optimizely CMS — write {{TokenName}} in any text field and let editors define reusable, multilingual content tokens.
+
+## Overview
+
+ContentTokens is an addon for Optimizely CMS v12 that enables editors to define reusable content tokens that can be used throughout the site. Simply write `{{TokenName}}` in any text field, and the addon will automatically replace it with the defined token value at runtime.
+
+## Features
+
+- 🌍 **Multilingual Support**: Define different token values for different languages
+- ✏️ **Easy Management**: Intuitive admin gadget for creating and editing tokens
+- 🔄 **Automatic Replacement**: Tokens are replaced automatically in HTML responses
+- 🎯 **Simple Syntax**: Use `{{TokenName}}` anywhere in your content
+- 📝 **REST API**: Full API support for programmatic token management
+
+## Installation
+
+### NuGet Package
+
+```bash
+Install-Package ContentTokens
+```
+
+Or via .NET CLI:
+
+```bash
+dotnet add package ContentTokens
+```
+
+### Configuration
+
+1. Add the ContentTokens middleware to your `Startup.cs` or `Program.cs`:
+
+```csharp
+using ContentTokens.Extensions;
+
+// In your Configure/WebApplication setup
+app.UseContentTokens();
+```
+
+**Important**: Add the middleware after `UseRouting()` and `UseAuthentication()`, but before `UseEndpoints()`:
+
+```csharp
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+// Add ContentTokens middleware here
+app.UseContentTokens();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapRazorPages();
+});
+```
+
+2. The addon will automatically register itself with Optimizely CMS through the initialization module.
+
+## Usage
+
+### Managing Tokens via Admin UI
+
+1. Log in to the Optimizely CMS admin interface
+2. Navigate to the Dashboard
+3. Look for the "Content Tokens" gadget
+4. Click "Add Token" to create a new token
+5. Fill in the token details:
+   - **Token Name**: The name used in content (e.g., `CompanyName`)
+   - **Value**: The content that will replace the token
+   - **Language Code**: Optional language code (e.g., `en`, `sv`, `de`) - leave empty for all languages
+   - **Description**: Optional description of the token's purpose
+
+### Using Tokens in Content
+
+Simply write the token name in double curly braces anywhere in your content:
+
+```html
+<p>Welcome to {{CompanyName}}!</p>
+<p>Contact us at {{SupportEmail}} or call {{PhoneNumber}}</p>
+```
+
+At runtime, these will be replaced with the actual values:
+
+```html
+<p>Welcome to Acme Corporation!</p>
+<p>Contact us at support@acme.com or call +1-555-0123</p>
+```
+
+### Multilingual Tokens
+
+You can define language-specific values for tokens. The addon will automatically use the appropriate value based on the current content language:
+
+- Token: `WelcomeMessage`
+  - English (`en`): "Welcome to our site!"
+  - Swedish (`sv`): "Välkommen till vår webbplats!"
+  - German (`de`): "Willkommen auf unserer Website!"
+
+If a language-specific token is not found, the addon falls back to the language-neutral token (one without a language code).
+
+### Programmatic Access
+
+You can also access tokens programmatically using the `IContentTokenService`:
+
+```csharp
+using ContentTokens.Services;
+
+public class MyController : Controller
+{
+    private readonly IContentTokenService _tokenService;
+
+    public MyController(IContentTokenService tokenService)
+    {
+        _tokenService = tokenService;
+    }
+
+    public IActionResult Index()
+    {
+        // Get a specific token
+        var token = _tokenService.GetToken("CompanyName", "en");
+        
+        // Replace tokens in text
+        var text = "Welcome to {{CompanyName}}!";
+        var result = _tokenService.ReplaceTokens(text, "en");
+        
+        // Get all tokens
+        var allTokens = _tokenService.GetAllTokens();
+        
+        return View();
+    }
+}
+```
+
+### REST API
+
+The addon provides a REST API for managing tokens:
+
+#### Get All Tokens
+```http
+GET /api/contenttokens?languageCode=en
+```
+
+#### Get a Specific Token
+```http
+GET /api/contenttokens/{name}?languageCode=en
+```
+
+#### Create or Update Token
+```http
+POST /api/contenttokens
+Content-Type: application/json
+
+{
+  "name": "CompanyName",
+  "value": "Acme Corporation",
+  "languageCode": "en",
+  "description": "The company name displayed across the site"
+}
+```
+
+#### Delete Token
+```http
+DELETE /api/contenttokens/{id}
+```
+
+#### Preview Token Replacement
+```http
+POST /api/contenttokens/preview
+Content-Type: application/json
+
+{
+  "text": "Welcome to {{CompanyName}}!",
+  "languageCode": "en"
+}
+```
+
+## Use Cases
+
+- **Company Information**: Store company name, address, phone numbers, etc.
+- **Legal Text**: Copyright notices, terms of service snippets
+- **Social Media Links**: Twitter handles, Facebook URLs
+- **Campaign Text**: Promotional messages that need to be updated frequently
+- **Contact Information**: Support emails, sales contacts
+- **Branding**: Slogans, taglines, brand-specific terminology
+
+## Architecture
+
+The addon consists of several key components:
+
+- **ContentToken Model**: Stores token data in Optimizely's Dynamic Data Store
+- **ContentTokenService**: Service for managing and replacing tokens
+- **ContentTokenReplacementMiddleware**: ASP.NET Core middleware that processes HTML responses
+- **ContentTokensController**: REST API for token management
+- **Admin Gadget**: Dojo-based UI widget for the Optimizely admin interface
+
+## Requirements
+
+- Optimizely CMS 12.x or higher
+- .NET 8.0 or higher
+- ASP.NET Core
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/Hangsolow/ContentTokens).
+
+## Acknowledgments
+
+Created following the excellent blog posts by Mark Stott:
+- [Creating an Optimizely addon - Getting Started](https://world.optimizely.com/blogs/mark-stott/dates/2024/8/creating-an-optimizely-addon---getting-started/)
+- [Creating an Optimizely CMS addon - Adding an Editor Interface Gadget](https://world.optimizely.com/blogs/mark-stott/dates/2024/8/creating-an-optimizely-cms-addon---adding-an-editor-interface-gadget/)
