@@ -194,6 +194,35 @@ The addon consists of several key components:
 - **ContentTokensController**: REST API for token management
 - **Admin Gadget**: Dojo-based UI widget for the Optimizely admin interface
 
+## Example Projects
+
+Two example projects are provided to demonstrate the addon:
+
+### ContentTokens.Example (Simple)
+**Location**: `tests/ContentTokens.Example/`
+
+A lightweight ASP.NET Core application that demonstrates basic token replacement without requiring a database:
+- ✅ Quick setup, no database required
+- ✅ REST API for token management
+- ✅ Live token replacement demonstration
+- ✅ Ideal for understanding token functionality
+- [View README](tests/ContentTokens.Example/README.md)
+
+### ContentTokens.CmsExample (Full CMS)
+**Location**: `tests/ContentTokens.CmsExample/`
+
+A complete Optimizely CMS 12 implementation showing real-world integration:
+- ✅ Full Optimizely CMS 12 setup
+- ✅ Admin UI gadget for token management
+- ✅ Sample content types (pages with token support)
+- ✅ CMS content editing with tokens
+- ❌ Requires SQL Server or LocalDB
+- [View README](tests/ContentTokens.CmsExample/README.md)
+
+**Which to use?**
+- Use **ContentTokens.Example** for quick testing and API exploration
+- Use **ContentTokens.CmsExample** for full CMS integration and real-world scenarios
+
 ## Requirements
 
 - Optimizely CMS 12.x or higher

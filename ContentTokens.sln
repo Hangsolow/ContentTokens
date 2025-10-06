@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens", "src\Conten
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens.Example", "tests\ContentTokens.Example\ContentTokens.Example.csproj", "{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens.CmsExample", "tests\ContentTokens.CmsExample\ContentTokens.CmsExample.csproj", "{C01BE077-E913-4728-B8B5-DA1A20B37F4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,8 +45,23 @@ Global
 		{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}.Release|x64.Build.0 = Release|Any CPU
 		{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}.Release|x86.ActiveCfg = Release|Any CPU
 		{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}.Release|x86.Build.0 = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|x64.Build.0 = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Debug|x86.Build.0 = Debug|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|x64.ActiveCfg = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|x64.Build.0 = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|x86.ActiveCfg = Release|Any CPU
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C01BE077-E913-4728-B8B5-DA1A20B37F4B} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
