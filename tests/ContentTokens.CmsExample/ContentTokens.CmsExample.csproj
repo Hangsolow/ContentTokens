@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Optimizely CMS 12 packages -->
+    <PackageReference Include="EPiServer.CMS" Version="12.33.5" />
+    <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.33.5" />
+    
+    <!-- ContentTokens addon -->
+    <ProjectReference Include="..\..\src\ContentTokens\ContentTokens.csproj" />
+  </ItemGroup>
+
+</Project>

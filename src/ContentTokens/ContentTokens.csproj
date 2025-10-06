@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ContentTokens</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Alex Boesen</Authors>
+    <Company>Hangsolow</Company>
+    <Description>Dynamic placeholders for Optimizely CMS — write {{TokenName}} in any text field and let editors define reusable, multilingual content tokens.</Description>
+    <PackageTags>Optimizely;CMS;Tokens;Placeholders</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Hangsolow/ContentTokens</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="module.config" />
+    <EmbeddedResource Include="ClientResources\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

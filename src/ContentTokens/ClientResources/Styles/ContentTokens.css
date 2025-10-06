@@ -1,0 +1,113 @@
+/**
+ * Content Tokens CSS Styles
+ * 
+ * Styles for token placeholders in the TinyMCE editor
+ * and admin gadget UI components.
+ */
+
+/* Token placeholder styling in TinyMCE editor */
+.opt-content-token {
+    background-color: #e8f4fd;
+    border: 1px solid #4a90e2;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: bold;
+    color: #2d5f8d;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 2px;
+    transition: background-color 0.2s ease;
+}
+
+.opt-content-token:hover {
+    background-color: #d0e7f8;
+    border-color: #3a7ec2;
+}
+
+/* Alternative styling options - uncomment to use */
+
+/* Option 2: Yellow highlight style */
+/*
+.opt-content-token {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: bold;
+    color: #856404;
+    cursor: pointer;
+    display: inline-block;
+}
+*/
+
+/* Option 3: Green success style */
+/*
+.opt-content-token {
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: bold;
+    color: #155724;
+    cursor: pointer;
+    display: inline-block;
+}
+*/
+
+/* Option 4: Purple accent style */
+/*
+.opt-content-token {
+    background-color: #f3e5f5;
+    border: 1px solid #9c27b0;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: "Courier New", Consolas, monospace;
+    font-weight: bold;
+    color: #6a1b9a;
+    cursor: pointer;
+    display: inline-block;
+}
+*/
+
+/* Admin gadget token list styles */
+.token-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.token-list table {
+    font-size: 13px;
+}
+
+.token-list td {
+    vertical-align: top;
+}
+
+/* Token editor panel */
+.token-editor {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TinyMCE autocomplete customization (optional) */
+.tox .tox-collection__item-label {
+    font-family: "Courier New", Consolas, monospace;
+}
+
+.tox .tox-collection__item-accessory {
+    color: #666;
+    font-size: 0.9em;
+}

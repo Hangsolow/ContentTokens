@@ -1,0 +1,40 @@
+@using ContentTokens.CmsExample.Models.Pages
+@model StandardPage
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Title ?? Model.Name;
+}
+
+<div class="standard-page">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h1>@Model.Title</h1>
+    }
+    
+    @if (Model.MainBody != null)
+    {
+        <div class="main-body">
+            @Html.PropertyFor(x => x.MainBody)
+        </div>
+    }
+    
+    @if (Model.MainContentArea != null)
+    {
+        <div class="main-content-area">
+            @Html.PropertyFor(x => x.MainContentArea)
+        </div>
+    }
+</div>
+
+<div class="alert alert-info">
+    <h4>ContentTokens Demo</h4>
+    <p>You can use tokens in the content above, such as:</p>
+    <ul>
+        <li><code>{{CompanyName}}</code></li>
+        <li><code>{{SupportEmail}}</code></li>
+        <li><code>{{PhoneNumber}}</code></li>
+    </ul>
+    <p>Tokens will be replaced with their configured values when viewing the page.</p>
+</div>
+

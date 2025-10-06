@@ -1,0 +1,20 @@
+# Optimizely CMS specific
+App_Data/
+*.mdf
+*.ldf
+
+# User-specific files
+*.user
+*.suo
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# IDE
+.vs/
+.vscode/
+
+# Package Files
+*.nupkg
+packages/
