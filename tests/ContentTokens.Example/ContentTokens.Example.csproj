@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ContentTokens\ContentTokens.csproj" />
+    <ProjectReference Include="..\..\src\ContentTokens\ContentTokens.csproj" />
   </ItemGroup>
 
 </Project>

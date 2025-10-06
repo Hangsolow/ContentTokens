@@ -11,7 +11,7 @@ This is an example ASP.NET Core web application demonstrating how to use the Con
 
 2. Run the example project:
    ```bash
-   cd ContentTokens.Example
+   cd tests/ContentTokens.Example
    dotnet run
    ```
 

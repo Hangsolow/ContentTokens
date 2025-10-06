@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens", "ContentTokens\ContentTokens.csproj", "{2494611F-74C3-4921-BB46-0AABA8D15436}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens", "src\ContentTokens\ContentTokens.csproj", "{2494611F-74C3-4921-BB46-0AABA8D15436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens.Example", "ContentTokens.Example\ContentTokens.Example.csproj", "{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentTokens.Example", "tests\ContentTokens.Example\ContentTokens.Example.csproj", "{9EF0452E-D5A6-46B9-9DF2-A9879C0D705F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

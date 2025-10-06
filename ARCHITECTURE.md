@@ -11,7 +11,7 @@ ContentTokens is an Optimizely CMS addon that provides a dynamic token replaceme
 The addon consists of several key components:
 
 ```
-ContentTokens/
+src/ContentTokens/
 ├── Models/
 │   └── ContentToken.cs          # Data model for tokens
 ├── Services/
