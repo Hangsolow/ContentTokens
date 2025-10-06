@@ -9,7 +9,7 @@ namespace ContentTokens.Controllers
     /// <summary>
     /// REST API controller for managing content tokens.
     /// </summary>
-    [Authorize(Roles = "CmsAdmins,CmsEditors,WebAdmins")]
+    [AllowAnonymous] // For example purposes - in production use [Authorize(Roles = "CmsAdmins,CmsEditors,WebAdmins")]
     [Route("api/contenttokens")]
     [ApiController]
     public class ContentTokensController : ControllerBase
