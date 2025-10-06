@@ -12,12 +12,14 @@ Welcome to the ContentTokens documentation. This addon for Optimizely CMS v12 pr
 - **[Architecture](architecture.md)** - Understanding how ContentTokens works
 - **[API Reference](api-reference.md)** - Complete API documentation
 - **[TinyMCE Plugin](tinymce-plugin.md)** - Rich text editor integration with autocomplete
+- **[Dojo Plugin](dojo-plugin.md)** - Plain text field integration with autocomplete
 
 ## Configuration and Customization
 
 - **[Configuration](configuration.md)** - Advanced configuration options and patterns
 - **[Advanced Usage](advanced-usage.md)** - Complex scenarios and advanced patterns
 - **[TinyMCE Customization](tinymce-plugin.md#customization)** - Customize the editor plugin
+- **[Dojo Customization](dojo-plugin.md#customization)** - Customize the string field autocomplete
 
 ## Development and Testing
 
@@ -50,7 +52,8 @@ Welcome to the ContentTokens documentation. This addon for Optimizely CMS v12 pr
 | **REST API** | Full CRUD API for tokens | [API Reference](api-reference.md) |
 | **Admin Gadget** | CMS dashboard widget | [Getting Started](getting-started.md#create-your-first-token) |
 | **TinyMCE Plugin** | Rich text editor integration | [TinyMCE Plugin](tinymce-plugin.md) |
-| **Autocomplete** | Type `{{` for token suggestions | [TinyMCE Plugin](tinymce-plugin.md#usage) |
+| **Dojo Plugin** | Plain text field autocomplete | [Dojo Plugin](dojo-plugin.md) |
+| **Autocomplete** | Type `{{` for token suggestions | [TinyMCE Plugin](tinymce-plugin.md#usage) / [Dojo Plugin](dojo-plugin.md#usage) |
 | **Testing** | Comprehensive testing support | [Testing](testing.md) |
 
 ## What is ContentTokens?

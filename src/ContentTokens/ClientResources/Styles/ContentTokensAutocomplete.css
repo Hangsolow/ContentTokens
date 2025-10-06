@@ -1,0 +1,154 @@
+/**
+ * ContentTokens Autocomplete Styles
+ * 
+ * Styles for the Dojo-based autocomplete widget for plain string fields.
+ * Provides dropdown styling, token highlighting, and visual feedback.
+ */
+
+/* Widget wrapper */
+.epiContentTokensWrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* Input field container */
+.epiContentTokensInput {
+    width: 100%;
+}
+
+/* Autocomplete dropdown */
+.epiContentTokensDropdown {
+    position: absolute;
+    z-index: 10000;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 2px;
+}
+
+/* Dropdown item */
+.epiContentTokensDropdownItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.15s ease;
+}
+
+.epiContentTokensDropdownItem:last-child {
+    border-bottom: none;
+}
+
+.epiContentTokensDropdownItem:hover,
+.epiContentTokensDropdownItemSelected {
+    background-color: #f5f5f5;
+}
+
+.epiContentTokensDropdownItem strong {
+    color: #333333;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.epiContentTokensDropdownItem .epiContentTokensDescription {
+    color: #666666;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Token highlighting in input fields (optional) */
+.epiContentTokensInput input[type="text"],
+.epiContentTokensInput textarea {
+    font-family: 'Courier New', monospace;
+}
+
+/* Highlighted tokens - requires JavaScript to wrap tokens in spans */
+.opt-content-token {
+    background-color: #e8f4fd;
+    padding: 2px 4px;
+    border-radius: 3px;
+    border: 1px solid #b3d9f2;
+    font-weight: 500;
+}
+
+/* Alternative theme options */
+
+/* Green theme */
+.epiContentTokensWrapper.theme-green .opt-content-token {
+    background-color: #e8f5e9;
+    border-color: #a5d6a7;
+}
+
+/* Yellow theme */
+.epiContentTokensWrapper.theme-yellow .opt-content-token {
+    background-color: #fff9e6;
+    border-color: #ffe082;
+}
+
+/* Purple theme */
+.epiContentTokensWrapper.theme-purple .opt-content-token {
+    background-color: #f3e5f5;
+    border-color: #ce93d8;
+}
+
+/* Scrollbar styling for dropdown */
+.epiContentTokensDropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.epiContentTokensDropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.epiContentTokensDropdown::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 4px;
+}
+
+.epiContentTokensDropdown::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+}
+
+/* Loading state */
+.epiContentTokensDropdown.loading {
+    padding: 20px;
+    text-align: center;
+    color: #666666;
+}
+
+.epiContentTokensDropdown.loading::before {
+    content: "Loading tokens...";
+}
+
+/* Empty state */
+.epiContentTokensDropdown.empty {
+    padding: 20px;
+    text-align: center;
+    color: #999999;
+}
+
+.epiContentTokensDropdown.empty::before {
+    content: "No tokens available";
+}
+
+/* Focus state */
+.epiContentTokensInput .dijitInputField:focus {
+    outline: 2px solid #0074c1;
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .epiContentTokensDropdown {
+        max-height: 200px;
+    }
+    
+    .epiContentTokensDropdownItem {
+        padding: 10px;
+    }
+}

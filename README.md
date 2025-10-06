@@ -14,6 +14,7 @@ ContentTokens is an addon for Optimizely CMS v12 that enables editors to define 
 - 🎯 **Simple Syntax**: Use `{{TokenName}}` anywhere in your content
 - 📝 **REST API**: Full API support for programmatic token management
 - 🎨 **TinyMCE Plugin**: Rich text editor integration with autocomplete for easy token insertion
+- 🔤 **Dojo Plugin**: Plain text field autocomplete for string properties
 - 💡 **Visual Highlighting**: Token placeholders are highlighted in the editor for easy identification
 
 ## Installation
@@ -90,7 +91,19 @@ Alternatively, click the **Token** button in the toolbar or use the **Insert** m
 
 See [TinyMCE Plugin Documentation](docs/tinymce-plugin.md) for detailed information.
 
-#### Method 2: Manual Entry
+#### Method 2: Plain Text Fields with Autocomplete (Dojo Plugin)
+
+For plain string properties, the Dojo autocomplete plugin provides similar functionality:
+
+1. Click in a text field with token support (decorated with `[UIHint("ContentTokenString")]`)
+2. Type `{{` (two opening curly braces)
+3. A dropdown appears with available tokens
+4. Navigate with arrow keys or mouse
+5. Press Enter or click to insert the token
+
+See [Dojo Plugin Documentation](docs/dojo-plugin.md) for detailed information.
+
+#### Method 3: Manual Entry
 
 Simply write the token name in double curly braces anywhere in your content:
 
