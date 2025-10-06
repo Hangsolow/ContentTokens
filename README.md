@@ -200,9 +200,24 @@ The addon consists of several key components:
 - .NET 8.0 or higher
 - ASP.NET Core
 
+## Documentation
+
+Comprehensive documentation is available in the [docs](docs/) folder:
+
+- **[Getting Started](docs/getting-started.md)** - Quick start guide
+- **[Installation](docs/installation.md)** - Detailed installation instructions
+- **[Configuration](docs/configuration.md)** - Advanced configuration options
+- **[API Reference](docs/api-reference.md)** - Complete REST API documentation
+- **[Examples](docs/examples.md)** - Usage examples and patterns
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+
+For architectural details, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
