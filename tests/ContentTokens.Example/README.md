@@ -96,10 +96,10 @@ After creating tokens, refresh the homepage in your browser. You should see the 
 
 ## What's Happening
 
-1. The `Program.cs` configures the ContentTokens middleware
+1. The `Program.cs` configures the ContentTokens service
 2. The homepage contains HTML with token placeholders like `{{CompanyName}}`
-3. When the page is rendered, the ContentTokenReplacementMiddleware intercepts the response
-4. All token placeholders are replaced with their configured values
+3. The service replaces token placeholders with their configured values
+4. All token placeholders are replaced when content is processed
 5. The final HTML is sent to the browser with actual values instead of placeholders
 
 ## Integration with Optimizely CMS

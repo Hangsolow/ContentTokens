@@ -20,8 +20,6 @@ src/ContentTokens/
 │   └── ContentTokenService.cs   # Service for managing tokens
 ├── Controllers/
 │   └── ContentTokensController.cs  # REST API endpoints
-├── Filters/
-│   └── ContentTokenReplacementMiddleware.cs  # HTTP middleware
 ├── Extensions/
 │   └── ContentTokensApplicationBuilderExtensions.cs  # Extension methods
 ├── Gadgets/
@@ -52,17 +50,14 @@ The `ContentToken` model includes:
 
 ### Token Replacement
 
-Token replacement happens at two levels:
+Token replacement happens through:
 
-1. **Automatic Replacement (Middleware)**
-   - The `ContentTokenReplacementMiddleware` intercepts all HTML responses
+1. **Service Layer Replacement**
+   - Developers use `IContentTokenService.ReplaceTokens()` to replace tokens
    - Uses regex pattern `\{\{(\w+)\}\}` to find tokens
    - Replaces tokens with their configured values
    - Respects current content language
-
-2. **Manual Replacement (Service)**
-   - Developers can use `IContentTokenService.ReplaceTokens()` directly
-   - Useful for non-HTML content (emails, PDFs, etc.)
+   - Useful for any content type (HTML, emails, PDFs, etc.)
 
 ### Multilingual Support
 
@@ -209,7 +204,9 @@ Implement `IContentTokenService` to add:
 
 ### Custom Middleware
 
-Replace or extend `ContentTokenReplacementMiddleware` for:
+### Custom Token Processing
+
+Extend `IContentTokenService` for:
 - Custom processing logic
 - Additional content types
 - Performance optimizations
@@ -246,14 +243,17 @@ var processed = tokenService.ReplaceTokens(pdfContent);
 GeneratePdf(processed);
 ```
 
-**Custom Content Types**:
+**Custom Processing**:
 ```csharp
-// Override middleware to process additional content types
-public class CustomTokenMiddleware : ContentTokenReplacementMiddleware
+// Create custom token processing logic
+public class CustomTokenService : IContentTokenService
 {
-    protected override bool ShouldProcess(HttpContext context)
+    public string ReplaceTokens(string content, string languageCode = null)
     {
-        return context.Response.ContentType?.Contains("text/") == true;
+        // Custom processing logic
+        content = PreProcess(content);
+        // ... token replacement
+        return PostProcess(content);
     }
 }
 ```

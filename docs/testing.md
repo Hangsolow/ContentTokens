@@ -21,8 +21,6 @@ tests/
 │   ├── Unit/
 │   │   ├── Services/
 │   │   │   └── ContentTokenServiceTests.cs
-│   │   ├── Filters/
-│   │   │   └── ContentTokenReplacementMiddlewareTests.cs
 │   │   └── Controllers/
 │   │       └── ContentTokensControllerTests.cs
 │   ├── Integration/

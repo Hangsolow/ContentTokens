@@ -300,22 +300,22 @@ dotnet build
 builder.Services.AddSingleton<IContentTokenService, ContentTokenService>();
 ```
 
-#### Error: "NullReferenceException in ContentTokenReplacementMiddleware"
+#### Error: "NullReferenceException in Token Service"
 
 **Symptoms:**
-- Middleware throws exception
-- Pages fail to load
+- Service throws exception
+- Token replacement fails
 
 **Solution:**
-- Check middleware placement in pipeline
-- Verify token service is registered
+- Check token service is registered
+- Verify database connectivity
 - Check application logs for details
 
 #### Error: "ObjectDisposedException: Cannot access a closed Stream"
 
 **Symptoms:**
-- Error in middleware
-- Intermittent page load failures
+- Error in processing
+- Intermittent failures
 
 **Solution:** This was fixed in version 1.0. Ensure you're using the latest version.
 

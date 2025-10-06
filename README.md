@@ -190,7 +190,6 @@ The addon consists of several key components:
 
 - **ContentToken Model**: Stores token data in Optimizely's Dynamic Data Store
 - **ContentTokenService**: Service for managing and replacing tokens
-- **ContentTokenReplacementMiddleware**: ASP.NET Core middleware that processes HTML responses
 - **ContentTokensController**: REST API for token management
 - **Admin Gadget**: Dojo-based UI widget for the Optimizely admin interface
 
