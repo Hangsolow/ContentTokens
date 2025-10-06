@@ -59,6 +59,59 @@ Or with SQL authentication:
    - This may take a few minutes
    - Watch the console for initialization progress
 
+4. **Access the CMS:**
+   - Open your browser to: `https://localhost:5000` (or the port shown in console)
+   - You'll be redirected to the admin interface
+   - Create an admin user when prompted
+
+### Using ContentTokens in the CMS
+
+#### 1. Create Tokens
+
+1. Log in to the CMS
+2. Go to the Dashboard
+3. Find the **Content Tokens** gadget
+4. Click **Add Token** and create a few tokens:
+   - Name: `CompanyName`, Value: `Acme Corporation`
+   - Name: `SupportEmail`, Value: `support@acme.com`
+   - Name: `PhoneNumber`, Value: `+1-555-0123`
+
+#### 2. Use Tokens in Rich Text Fields
+
+The CmsExample includes a TinyMCE plugin for easy token insertion:
+
+**Method 1: Autocomplete (Recommended)**
+1. Edit a page (StartPage or StandardPage)
+2. Click in a Rich Text field (like MainBody)
+3. Type `{{` (two opening curly braces)
+4. A dropdown appears with available tokens
+5. Select a token and press Enter
+
+**Method 2: Toolbar Button**
+1. Click in a Rich Text field
+2. Click the **Token** button in the toolbar (bookmark icon)
+3. Select a token from the dialog
+4. Click **Insert**
+
+**Method 3: Manual Entry**
+- Simply type `{{TokenName}}` anywhere in the content
+
+#### 3. View Token Replacement
+
+Tokens are visually highlighted in the editor with a blue background. When you publish and view the page on the frontend, the tokens will be replaced with their actual values.
+
+See the [TinyMCE Plugin Documentation](../../docs/tinymce-plugin.md) for advanced features and customization.
+
+2. **Run the application:**
+   ```bash
+   dotnet run
+   ```
+
+3. **Database initialization:**
+   - On first run, Optimizely CMS will automatically create the database
+   - This may take a few minutes
+   - Watch the console for initialization progress
+
 4. **Access the site:**
    - Navigate to `http://localhost:5000` (or the URL shown in console)
    - You'll see the CMS setup wizard on first run

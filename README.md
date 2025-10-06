@@ -10,9 +10,11 @@ ContentTokens is an addon for Optimizely CMS v12 that enables editors to define 
 
 - 🌍 **Multilingual Support**: Define different token values for different languages
 - ✏️ **Easy Management**: Intuitive admin gadget for creating and editing tokens
-- 🔄 **Automatic Replacement**: Tokens are replaced automatically in HTML responses
+- 🔄 **Automatic Replacement**: Tokens are replaced automatically via service layer
 - 🎯 **Simple Syntax**: Use `{{TokenName}}` anywhere in your content
 - 📝 **REST API**: Full API support for programmatic token management
+- 🎨 **TinyMCE Plugin**: Rich text editor integration with autocomplete for easy token insertion
+- 💡 **Visual Highlighting**: Token placeholders are highlighted in the editor for easy identification
 
 ## Installation
 
@@ -73,6 +75,22 @@ app.UseEndpoints(endpoints =>
    - **Description**: Optional description of the token's purpose
 
 ### Using Tokens in Content
+
+#### Method 1: Rich Text Editor (TinyMCE) with Autocomplete
+
+The ContentTokens addon includes a TinyMCE plugin that makes inserting tokens easy:
+
+1. Click inside a Rich Text (XhtmlString) field
+2. Type `{{` (two opening curly braces)
+3. A dropdown appears with available tokens and their descriptions
+4. Use arrow keys to navigate or click to select
+5. Press Enter to insert the token
+
+Alternatively, click the **Token** button in the toolbar or use the **Insert** menu.
+
+See [TinyMCE Plugin Documentation](docs/tinymce-plugin.md) for detailed information.
+
+#### Method 2: Manual Entry
 
 Simply write the token name in double curly braces anywhere in your content:
 

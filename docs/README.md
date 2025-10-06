@@ -11,11 +11,13 @@ Welcome to the ContentTokens documentation. This addon for Optimizely CMS v12 pr
 
 - **[Architecture](architecture.md)** - Understanding how ContentTokens works
 - **[API Reference](api-reference.md)** - Complete API documentation
+- **[TinyMCE Plugin](tinymce-plugin.md)** - Rich text editor integration with autocomplete
 
 ## Configuration and Customization
 
 - **[Configuration](configuration.md)** - Advanced configuration options and patterns
 - **[Advanced Usage](advanced-usage.md)** - Complex scenarios and advanced patterns
+- **[TinyMCE Customization](tinymce-plugin.md#customization)** - Customize the editor plugin
 
 ## Development and Testing
 
@@ -47,6 +49,8 @@ Welcome to the ContentTokens documentation. This addon for Optimizely CMS v12 pr
 | **Multilingual** | Language-specific token values | [Advanced Usage](advanced-usage.md#multilingual-examples) |
 | **REST API** | Full CRUD API for tokens | [API Reference](api-reference.md) |
 | **Admin Gadget** | CMS dashboard widget | [Getting Started](getting-started.md#create-your-first-token) |
+| **TinyMCE Plugin** | Rich text editor integration | [TinyMCE Plugin](tinymce-plugin.md) |
+| **Autocomplete** | Type `{{` for token suggestions | [TinyMCE Plugin](tinymce-plugin.md#usage) |
 | **Testing** | Comprehensive testing support | [Testing](testing.md) |
 
 ## What is ContentTokens?
@@ -57,8 +61,10 @@ ContentTokens allows editors to define reusable, multilingual content tokens tha
 
 ✅ **Easy to Use** - Simple `{{TokenName}}` syntax  
 ✅ **Multilingual** - Support for language-specific tokens  
-✅ **Automatic Replacement** - Works seamlessly with HTML responses  
+✅ **Automatic Replacement** - Works seamlessly via service layer  
 ✅ **Admin UI** - Manage tokens via CMS dashboard gadget  
+✅ **TinyMCE Integration** - Rich text editor plugin with autocomplete  
+✅ **Visual Highlighting** - Token placeholders highlighted in editor  
 ✅ **REST API** - Programmatic access for integration  
 ✅ **Fallback Support** - Graceful handling of missing tokens
 
