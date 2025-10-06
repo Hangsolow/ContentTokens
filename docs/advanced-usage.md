@@ -1,6 +1,6 @@
-# Usage Examples
+# Advanced Usage
 
-This guide provides practical examples of using ContentTokens in various scenarios.
+This guide provides practical examples and advanced patterns for using ContentTokens in various scenarios.
 
 ## Basic Usage
 
@@ -60,7 +60,7 @@ curl -X POST http://localhost:5000/api/contenttokens \
 </div>
 ```
 
-## Multilingual Examples
+## Multilingual Advanced Usage
 
 ### Example 3: Language-Specific Welcome Messages
 
@@ -130,7 +130,7 @@ curl -X POST http://localhost:5000/api/contenttokens \
 - When viewing in English: uses `/en/terms-and-conditions`
 - When viewing in French (no French token): falls back to `/terms-and-conditions`
 
-## Advanced Examples
+## Advanced Advanced Usage
 
 ### Example 5: Dynamic Campaign Content
 
@@ -331,7 +331,7 @@ public async Task SeedDefaultTokensAsync()
 }
 ```
 
-## Integration Examples
+## Integration Advanced Usage
 
 ### Example 11: Using with Optimizely Content
 

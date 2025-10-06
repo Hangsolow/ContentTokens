@@ -424,5 +424,5 @@ public string ReplaceTokens(string text, string? languageCode = null)
 ## Next Steps
 
 - [API Reference](api-reference.md) - Complete API documentation
-- [Examples](examples.md) - Configuration examples
+- [Advanced Usage](advanced-usage.md) - Configuration examples
 - [Troubleshooting](troubleshooting.md) - Common configuration issues

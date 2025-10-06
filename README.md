@@ -208,10 +208,10 @@ Comprehensive documentation is available in the [docs](docs/) folder:
 - **[Installation](docs/installation.md)** - Detailed installation instructions
 - **[Configuration](docs/configuration.md)** - Advanced configuration options
 - **[API Reference](docs/api-reference.md)** - Complete REST API documentation
-- **[Examples](docs/examples.md)** - Usage examples and patterns
+- **[Advanced Usage](docs/advanced-usage.md)** - Usage examples and patterns
+- **[Testing](docs/testing.md)** - Testing strategies and examples
+- **[Architecture](docs/architecture.md)** - Architecture and design details
 - **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
-
-For architectural details, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Contributing
 

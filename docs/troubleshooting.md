@@ -516,5 +516,5 @@ curl http://localhost:5000/api/contenttokens > tokens-backup.json
 - [Getting Started](getting-started.md)
 - [API Reference](api-reference.md)
 - [Configuration Guide](configuration.md)
-- [Examples](examples.md)
+- [Advanced Usage](advanced-usage.md)
 - [GitHub Issues](https://github.com/Hangsolow/ContentTokens/issues)

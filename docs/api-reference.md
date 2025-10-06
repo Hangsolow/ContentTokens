@@ -376,7 +376,7 @@ curl -X POST http://localhost:5000/api/contenttokens/preview \
 }
 ```
 
-## Code Examples
+## Code Advanced Usage
 
 ### C# Example
 
@@ -481,5 +481,5 @@ The current API version is `1.0`. Future versions will be indicated in the URL p
 ## Next Steps
 
 - [Configuration Guide](configuration.md) - Configure API behavior
-- [Examples](examples.md) - More usage examples
+- [Advanced Usage](advanced-usage.md) - More usage examples
 - [Troubleshooting](troubleshooting.md) - API troubleshooting

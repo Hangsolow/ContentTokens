@@ -195,7 +195,7 @@ Centralize contact details:
 - [Installation Guide](installation.md) - Detailed installation instructions
 - [Configuration Guide](configuration.md) - Advanced configuration options
 - [API Reference](api-reference.md) - Complete REST API documentation
-- [Examples](examples.md) - More usage examples and patterns
+- [Advanced Usage](advanced-usage.md) - More usage examples and patterns
 - [Troubleshooting](troubleshooting.md) - Common issues and solutions
 
 ## Need Help?
