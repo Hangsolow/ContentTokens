@@ -13,6 +13,7 @@
     <PackageTags>Optimizely;CMS;Tokens;Placeholders</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Hangsolow/ContentTokens</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +23,10 @@
   <ItemGroup>
     <EmbeddedResource Include="module.config" />
     <EmbeddedResource Include="ClientResources\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
