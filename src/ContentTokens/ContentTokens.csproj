@@ -24,7 +24,6 @@
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.33.5" />
     <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.33.5" />
-    <PackageReference Include="EPiServer.Framework" Version="12.22.9" />
   </ItemGroup>
 
   <ItemGroup>
