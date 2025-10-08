@@ -88,7 +88,7 @@ namespace ContentTokens.Services
         {
             var now = DateTime.UtcNow;
 
-            if (token.Id == null || token.Id == Identity.NewIdentity)
+            if (token.Id == null || token.Id.ExternalId == null)
             {
                 token.Created = now;
                 token.Modified = now;
@@ -103,7 +103,7 @@ namespace ContentTokens.Services
 
         public void DeleteToken(Guid id)
         {
-            var identity = Identity.Create(id);
+            var identity = Identity.NewIdentity(id);
             _store.Delete(identity);
         }
 
