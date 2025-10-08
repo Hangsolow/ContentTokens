@@ -13,6 +13,9 @@ builder.Services
 builder.Services.AddMvc();
 builder.Services.AddRazorPages();
 
+// Add Blazor Server support for the ContentTokens addon
+builder.Services.AddServerSideBlazor();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -36,6 +39,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapRazorPages();
+    endpoints.MapBlazorHub();
     
     // CMS routing
     endpoints.MapControllerRoute(

@@ -1,0 +1,280 @@
+@using ContentTokens.Models
+@using ContentTokens.Services
+@using EPiServer.Data
+@inject IContentTokenService TokenService
+
+<div class="content-tokens-manager">
+    <div class="epi-contentArea">
+        <div class="epi-contentAreaHeader">
+            <h2 class="epi-contentAreaHeaderTitle">Content Tokens</h2>
+            <p class="epi-contentAreaHeaderDescription">Manage reusable content tokens for use across the site</p>
+        </div>
+
+        <div class="epi-contentAreaBody">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="epi-message epi-message--error" role="alert">
+                    @errorMessage
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="epi-message epi-message--success" role="alert">
+                    @successMessage
+                </div>
+            }
+
+            <div class="epi-buttonContainer" style="margin-bottom: 20px;">
+                <button class="epi-button epi-button--primary" @onclick="ShowAddTokenForm">
+                    <span class="epi-icon epi-icon--plus"></span>
+                    Add Token
+                </button>
+            </div>
+
+            @if (showForm)
+            {
+                <div class="epi-formArea" style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; background-color: #f9f9f9;">
+                    <h3>@(editingToken == null ? "Add New Token" : "Edit Token")</h3>
+                    
+                    <div class="epi-formField">
+                        <label class="epi-formLabel">Token Name (alphanumeric only, e.g., CompanyName)</label>
+                        <input type="text" class="epi-input epi-input--fullwidth" @bind="tokenName" placeholder="CompanyName" />
+                        @if (!string.IsNullOrEmpty(validationErrors.Name))
+                        {
+                            <span class="epi-formError">@validationErrors.Name</span>
+                        }
+                    </div>
+
+                    <div class="epi-formField">
+                        <label class="epi-formLabel">Token Value</label>
+                        <textarea class="epi-textarea epi-textarea--fullwidth" @bind="tokenValue" placeholder="Acme Corporation" rows="3"></textarea>
+                        @if (!string.IsNullOrEmpty(validationErrors.Value))
+                        {
+                            <span class="epi-formError">@validationErrors.Value</span>
+                        }
+                    </div>
+
+                    <div class="epi-formField">
+                        <label class="epi-formLabel">Language Code (optional, e.g., en, sv)</label>
+                        <input type="text" class="epi-input epi-input--fullwidth" @bind="tokenLanguageCode" placeholder="en" />
+                    </div>
+
+                    <div class="epi-formField">
+                        <label class="epi-formLabel">Description (optional)</label>
+                        <textarea class="epi-textarea epi-textarea--fullwidth" @bind="tokenDescription" placeholder="Description of what this token represents" rows="2"></textarea>
+                    </div>
+
+                    <div class="epi-buttonContainer">
+                        <button class="epi-button epi-button--primary" @onclick="SaveToken">
+                            Save
+                        </button>
+                        <button class="epi-button epi-button--secondary" @onclick="CancelEdit">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            }
+
+            @if (tokens == null)
+            {
+                <div class="epi-loading">Loading tokens...</div>
+            }
+            else if (!tokens.Any())
+            {
+                <div class="epi-emptyState">
+                    <p>No tokens defined yet. Click 'Add Token' to create one.</p>
+                </div>
+            }
+            else
+            {
+                <table class="epi-table epi-table--bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Language</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var token in tokens)
+                        {
+                            <tr>
+                                <td><code>{{@token.Name}}</code></td>
+                                <td>@token.Value</td>
+                                <td>@(string.IsNullOrEmpty(token.LanguageCode) ? "(all)" : token.LanguageCode)</td>
+                                <td>@token.Description</td>
+                                <td>
+                                    <button class="epi-button epi-button--small epi-button--secondary" @onclick="() => EditToken(token)">
+                                        <span class="epi-icon epi-icon--edit"></span>
+                                        Edit
+                                    </button>
+                                    <button class="epi-button epi-button--small epi-button--danger" @onclick="() => DeleteToken(token)">
+                                        <span class="epi-icon epi-icon--delete"></span>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<ContentToken>? tokens;
+    private bool showForm = false;
+    private ContentToken? editingToken = null;
+    
+    private string tokenName = string.Empty;
+    private string tokenValue = string.Empty;
+    private string tokenLanguageCode = string.Empty;
+    private string tokenDescription = string.Empty;
+    
+    private string? errorMessage = null;
+    private string? successMessage = null;
+    private ValidationErrors validationErrors = new ValidationErrors();
+
+    protected override void OnInitialized()
+    {
+        LoadTokens();
+    }
+
+    private void LoadTokens()
+    {
+        try
+        {
+            tokens = TokenService.GetAllTokens().ToList();
+            errorMessage = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading tokens: {ex.Message}";
+        }
+    }
+
+    private void ShowAddTokenForm()
+    {
+        showForm = true;
+        editingToken = null;
+        ClearForm();
+        ClearMessages();
+    }
+
+    private void EditToken(ContentToken token)
+    {
+        showForm = true;
+        editingToken = token;
+        tokenName = token.Name;
+        tokenValue = token.Value;
+        tokenLanguageCode = token.LanguageCode ?? string.Empty;
+        tokenDescription = token.Description ?? string.Empty;
+        ClearMessages();
+    }
+
+    private void CancelEdit()
+    {
+        showForm = false;
+        editingToken = null;
+        ClearForm();
+        ClearMessages();
+    }
+
+    private void SaveToken()
+    {
+        validationErrors = new ValidationErrors();
+        
+        // Validate
+        if (string.IsNullOrWhiteSpace(tokenName))
+        {
+            validationErrors.Name = "Token name is required";
+        }
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(tokenName, @"^\w+$"))
+        {
+            validationErrors.Name = "Token name must be alphanumeric (letters and numbers only)";
+        }
+
+        if (string.IsNullOrWhiteSpace(tokenValue))
+        {
+            validationErrors.Value = "Token value is required";
+        }
+
+        if (validationErrors.HasErrors())
+        {
+            return;
+        }
+
+        try
+        {
+            var token = editingToken ?? new ContentToken();
+            token.Name = tokenName.Trim();
+            token.Value = tokenValue.Trim();
+            token.LanguageCode = string.IsNullOrWhiteSpace(tokenLanguageCode) ? null : tokenLanguageCode.Trim();
+            token.Description = string.IsNullOrWhiteSpace(tokenDescription) ? null : tokenDescription.Trim();
+
+            TokenService.SaveToken(token);
+            
+            successMessage = editingToken == null 
+                ? $"Token '{token.Name}' created successfully!" 
+                : $"Token '{token.Name}' updated successfully!";
+            errorMessage = null;
+            
+            LoadTokens();
+            CancelEdit();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving token: {ex.Message}";
+            successMessage = null;
+        }
+    }
+
+    private void DeleteToken(ContentToken token)
+    {
+        if (token.Id == null)
+        {
+            errorMessage = "Cannot delete token: Invalid token ID";
+            return;
+        }
+
+        try
+        {
+            TokenService.DeleteToken(token.Id.ExternalId);
+            successMessage = $"Token '{token.Name}' deleted successfully!";
+            errorMessage = null;
+            LoadTokens();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error deleting token: {ex.Message}";
+            successMessage = null;
+        }
+    }
+
+    private void ClearForm()
+    {
+        tokenName = string.Empty;
+        tokenValue = string.Empty;
+        tokenLanguageCode = string.Empty;
+        tokenDescription = string.Empty;
+        validationErrors = new ValidationErrors();
+    }
+
+    private void ClearMessages()
+    {
+        errorMessage = null;
+        successMessage = null;
+    }
+
+    private class ValidationErrors
+    {
+        public string? Name { get; set; }
+        public string? Value { get; set; }
+
+        public bool HasErrors() => !string.IsNullOrEmpty(Name) || !string.IsNullOrEmpty(Value);
+    }
+}
