@@ -1,0 +1,231 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Tokens - Optimizely CMS</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@optimizely/axiom@@latest/dist/axiom.min.css" />
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .content-tokens-manager {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .epi-contentArea {
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .epi-contentAreaHeader {
+            padding: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .epi-contentAreaHeaderTitle {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #212121;
+        }
+
+        .epi-contentAreaHeaderDescription {
+            margin: 0;
+            color: #666;
+        }
+
+        .epi-contentAreaBody {
+            padding: 24px;
+        }
+
+        .epi-message {
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .epi-message--error {
+            background-color: #fce4e4;
+            border: 1px solid #f5c6c6;
+            color: #cc0000;
+        }
+
+        .epi-message--success {
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            color: #2e7d32;
+        }
+
+        .epi-buttonContainer {
+            display: flex;
+            gap: 10px;
+        }
+
+        .epi-button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .epi-button--primary {
+            background-color: #0073e6;
+            color: white;
+            border-color: #0073e6;
+        }
+
+        .epi-button--primary:hover {
+            background-color: #005bb5;
+            border-color: #005bb5;
+        }
+
+        .epi-button--secondary {
+            background-color: white;
+            color: #333;
+            border-color: #ccc;
+        }
+
+        .epi-button--secondary:hover {
+            background-color: #f5f5f5;
+        }
+
+        .epi-button--danger {
+            background-color: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+        }
+
+        .epi-button--danger:hover {
+            background-color: #c62828;
+            border-color: #c62828;
+        }
+
+        .epi-button--small {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .epi-formArea {
+            border-radius: 4px;
+        }
+
+        .epi-formField {
+            margin-bottom: 16px;
+        }
+
+        .epi-formLabel {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .epi-input,
+        .epi-textarea {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .epi-input:focus,
+        .epi-textarea:focus {
+            outline: none;
+            border-color: #0073e6;
+            box-shadow: 0 0 0 3px rgba(0, 115, 230, 0.1);
+        }
+
+        .epi-input--fullwidth,
+        .epi-textarea--fullwidth {
+            width: 100%;
+        }
+
+        .epi-formError {
+            display: block;
+            margin-top: 4px;
+            font-size: 13px;
+            color: #d32f2f;
+        }
+
+        .epi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .epi-table--bordered {
+            border: 1px solid #e0e0e0;
+        }
+
+        .epi-table thead th {
+            background-color: #f5f5f5;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .epi-table tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .epi-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .epi-table code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .epi-loading {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .epi-emptyState {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .epi-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <component type="typeof(ContentTokens.BlazorCmsAddon.Components.ContentTokensManager)" render-mode="ServerPrerendered" />
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>

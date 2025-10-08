@@ -34,7 +34,7 @@ app.UseEndpoints(...);
 curl http://localhost:5000/api/contenttokens
 ```
 
-**Solution:** Create the token via the API or admin gadget.
+**Solution:** Create the token via the API or Blazor admin interface.
 
 #### 3. Wrong Content Type
 
@@ -67,14 +67,28 @@ Tokens are case-sensitive!
 
 ---
 
-### Issue: Admin Gadget Not Visible
+### Issue: Admin Interface Not Visible
 
 **Symptoms:**
-- "Content Tokens" gadget doesn't appear in CMS dashboard
+- "Content Tokens" menu item doesn't appear in CMS Admin menu
+- Can't access the Blazor admin interface
 
 **Possible Causes & Solutions:**
 
-#### 1. Module Not Loaded
+#### 1. Blazor Server Not Configured
+
+**Check:** Verify Blazor Server services and hub are registered
+
+**Solution:**
+```csharp
+// In Program.cs
+builder.Services.AddServerSideBlazor();
+
+// In endpoint configuration
+endpoints.MapBlazorHub();
+```
+
+#### 2. Module Not Loaded
 
 **Check:** Look for errors in the application logs during startup.
 
@@ -83,7 +97,7 @@ Tokens are case-sensitive!
 - Restart the application
 - Check Optimizely module initialization logs
 
-#### 2. Permissions Issue
+#### 3. Permissions Issue
 
 **Check:** User's CMS permissions
 
@@ -92,7 +106,7 @@ Tokens are case-sensitive!
 - CmsEditors
 - WebAdmins
 
-#### 3. Browser Cache
+#### 4. Browser Cache
 
 **Check:** Clear browser cache
 
@@ -104,9 +118,9 @@ Cmd+Shift+Delete (Mac)
 
 Then reload the page.
 
-#### 4. Module Configuration
+#### 5. Middleware Registration
 
-**Check:** Verify `module.config` is embedded in assembly
+**Check:** Verify ContentTokens middleware is registered
 
 **Solution:** Check `.csproj`:
 ```xml

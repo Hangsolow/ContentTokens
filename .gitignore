@@ -416,3 +416,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Optimizely/EPiServer modules
+**/modules/_protected/

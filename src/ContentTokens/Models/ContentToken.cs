@@ -13,7 +13,7 @@ namespace ContentTokens.Models
         /// <summary>
         /// Gets or sets the unique identifier for the token.
         /// </summary>
-        public Identity Id { get; set; } = Identity.NewIdentity;
+        public Identity Id { get; set; } = Identity.NewIdentity();
 
         /// <summary>
         /// Gets or sets the token name (e.g., "CompanyName", "SupportEmail").

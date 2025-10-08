@@ -33,12 +33,15 @@ Install-Package ContentTokens
 
 ### 2. Configuration
 
-Add the ContentTokens middleware to your `Program.cs` or `Startup.cs`:
+Add the ContentTokens middleware and Blazor Server support to your `Program.cs`:
 
 ```csharp
 using ContentTokens.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Blazor Server support for the admin interface
+builder.Services.AddServerSideBlazor();
 
 // ... other service registrations
 
@@ -55,6 +58,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapRazorPages();
+    endpoints.MapBlazorHub(); // Required for Blazor admin interface
 });
 
 app.Run();
@@ -62,18 +66,20 @@ app.Run();
 
 ### 3. Create Your First Token
 
-After installation, the ContentTokens gadget will appear in your Optimizely CMS dashboard.
+After installation, the ContentTokens admin interface will be available in your Optimizely CMS admin menu.
 
-**Via Admin UI:**
+**Via Blazor Admin UI:**
 1. Log in to Optimizely CMS
-2. Navigate to the Dashboard
-3. Find the "Content Tokens" gadget
+2. Navigate to **Admin** menu
+3. Click **Content Tokens**
 4. Click "Add Token"
 5. Enter:
-   - **Name**: `CompanyName`
+   - **Name**: `CompanyName` (alphanumeric only)
    - **Value**: `Acme Corporation`
    - **Description**: `Company name used throughout the site`
 6. Click "Save"
+
+The Blazor interface provides real-time validation and immediate feedback on your actions.
 
 **Via REST API:**
 ```bash
