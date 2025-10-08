@@ -21,15 +21,18 @@ src/ContentTokens/
 ├── Controllers/
 │   └── ContentTokensController.cs  # REST API endpoints
 ├── Extensions/
-│   └── ContentTokensApplicationBuilderExtensions.cs  # Extension methods
-├── Gadgets/
-│   └── ContentTokensGadgetDescriptor.cs  # Admin gadget registration
-├── ClientResources/
-│   └── Scripts/
-│       ├── ContentTokensGadget.js  # Admin UI widget
-│       └── Initializer.js          # Client-side initialization
-└── Infrastructure/
-    └── OptimizelyStubs.cs       # Compatibility layer
+│   └── ContentTokensApplicationBuilderExtensions.cs  # Middleware extensions
+├── BlazorCmsAddon/
+│   ├── Components/
+│   │   └── ContentTokensManager.razor  # Blazor admin component
+│   ├── ContentTokensAddonController.cs  # MVC controller for Blazor UI
+│   ├── ContentTokensMenuProvider.cs     # Admin menu registration
+│   └── Views/
+│       └── Index.cshtml          # Blazor host view
+└── ClientResources/
+    └── Scripts/
+        ├── ContentTokensTinyMcePlugin.js  # TinyMCE integration
+        └── ContentTokensAutocomplete.js   # Dojo autocomplete widget
 ```
 
 ### Data Storage
@@ -78,12 +81,16 @@ The addon supports multiple languages through:
 
 ### Admin Interface
 
-The admin gadget provides:
-- List view of all tokens
-- Create/Edit/Delete functionality
-- Language filtering
-- Token preview
-- Built with Dojo toolkit (Optimizely standard)
+The admin interface is built with Blazor Server and provides:
+- Modern, responsive UI following Optimizely Axiom design guidelines
+- List view of all tokens in a clean table format
+- Full CRUD functionality (Create, Read, Update, Delete)
+- Real-time validation (alphanumeric token names only)
+- Success/error messaging
+- Language filtering support
+- Integrated directly into the CMS admin menu at `/contenttokens`
+
+The Blazor implementation offers better performance and maintainability compared to legacy JavaScript frameworks.
 
 ### REST API
 
@@ -214,11 +221,13 @@ Extend `IContentTokenService` for:
 
 ### Custom Admin UI
 
-Replace or extend the gadget for:
+The Blazor admin interface can be extended or customized for:
 - Bulk operations
-- Import/export
-- Token validation
+- Import/export functionality
+- Advanced token validation
 - Usage analytics
+- Custom styling to match your brand
+- Additional fields or metadata
 
 ## Integration Guide
 
@@ -314,12 +323,13 @@ Potential improvements:
 3. Optimize regex pattern
 4. Consider pre-processing
 
-### Admin Gadget Not Visible
+### Admin Interface Not Visible
 
-1. Check module.config is embedded
-2. Verify module registration
-3. Clear browser cache
-4. Check CMS permissions
+1. Check Blazor Server is configured: `builder.Services.AddServerSideBlazor()` and `endpoints.MapBlazorHub()`
+2. Verify middleware is registered: `app.UseContentTokens()`
+3. Check the menu provider is loaded
+4. Clear browser cache
+5. Verify user has CMS admin permissions
 
 ## Support & Contributing
 

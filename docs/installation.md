@@ -65,9 +65,9 @@ dotnet add reference /path/to/ContentTokens/src/ContentTokens/ContentTokens.cspr
 
 ## Post-Installation Configuration
 
-### 1. Register the Middleware
+### 1. Register the Middleware and Blazor Support
 
-Add ContentTokens middleware to your ASP.NET Core pipeline. The order matters!
+Add ContentTokens middleware and Blazor Server support to your ASP.NET Core pipeline.
 
 **For Optimizely CMS 12 (.NET 6/8):**
 
@@ -80,6 +80,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services (Optimizely CMS services, etc.)
 builder.Services.AddCms();
+
+// Add Blazor Server support for the admin interface
+builder.Services.AddServerSideBlazor();
+
 // ... other services
 
 var app = builder.Build();
@@ -107,31 +111,29 @@ app.UseEndpoints(endpoints =>
     endpoints.MapContent();
     endpoints.MapControllers();
     endpoints.MapRazorPages();
+    endpoints.MapBlazorHub(); // Required for Blazor admin interface
 });
 
 app.Run();
 ```
 
-**Important:** Place `app.UseContentTokens()` after:
-- `UseRouting()`
-- `UseAuthentication()`
-- `UseAuthorization()`
-
-But before:
-- `UseEndpoints()`
+**Important:** 
+- Place `app.UseContentTokens()` after `UseRouting()`, `UseAuthentication()`, and `UseAuthorization()`
+- But before `UseEndpoints()`
+- Include `builder.Services.AddServerSideBlazor()` and `endpoints.MapBlazorHub()` for the Blazor admin interface
 
 ### 2. Verify Installation
 
 After adding the middleware, verify the installation:
 
-#### Check Admin Gadget
+#### Check Admin Interface
 
 1. Build and run your project
 2. Log in to Optimizely CMS admin panel
-3. Navigate to the Dashboard
-4. Look for the "Content Tokens" gadget
+3. Navigate to the **Admin** menu
+4. Look for **Content Tokens**
 
-If the gadget appears, the installation was successful!
+If the menu item appears and opens the Blazor interface, the installation was successful!
 
 #### Check REST API
 
@@ -203,17 +205,20 @@ app.UseContentTokens();
    dotnet nuget locals all --clear
    ```
 
-### Issue: Admin Gadget Not Appearing
+### Issue: Admin Interface Not Appearing
 
 **Possible Causes:**
-1. Middleware not registered correctly
-2. Module not loaded by Optimizely
+1. Blazor Server not configured
+2. Middleware not registered correctly
+3. Menu provider not loaded
 
 **Solutions:**
-1. Verify `app.UseContentTokens()` is called in the correct order
-2. Check that `module.config` is embedded in the assembly
-3. Clear browser cache
-4. Restart the application
+1. Verify `builder.Services.AddServerSideBlazor()` is called before building the app
+2. Verify `endpoints.MapBlazorHub()` is included in the endpoint configuration
+3. Verify `app.UseContentTokens()` is called in the correct order
+4. Check that the ContentTokens assembly is loaded
+5. Clear browser cache
+6. Restart the application
 
 ### Issue: Build Errors
 
@@ -259,10 +264,12 @@ The ContentTokens initialization module should register this automatically. Ensu
 
 To remove ContentTokens:
 
-1. Remove the middleware registration from `Program.cs`:
+1. Remove the Blazor Server services and middleware registration from `Program.cs`:
    ```csharp
-   // Remove this line:
+   // Remove these lines:
+   // builder.Services.AddServerSideBlazor();
    // app.UseContentTokens();
+   // endpoints.MapBlazorHub();
    ```
 
 2. Remove the NuGet package:

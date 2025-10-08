@@ -50,7 +50,7 @@ Welcome to the ContentTokens documentation. This addon for Optimizely CMS v12 pr
 | **Token Replacement** | Automatic `{{TokenName}}` replacement | [Architecture](architecture.md#token-replacement) |
 | **Multilingual** | Language-specific token values | [Advanced Usage](advanced-usage.md#multilingual-examples) |
 | **REST API** | Full CRUD API for tokens | [API Reference](api-reference.md) |
-| **Admin Gadget** | CMS dashboard widget | [Getting Started](getting-started.md#create-your-first-token) |
+| **Blazor Admin Interface** | Modern CMS admin interface | [Getting Started](getting-started.md#create-your-first-token) |
 | **TinyMCE Plugin** | Rich text editor integration | [TinyMCE Plugin](tinymce-plugin.md) |
 | **Dojo Plugin** | Plain text field autocomplete | [Dojo Plugin](dojo-plugin.md) |
 | **Autocomplete** | Type `{{` for token suggestions | [TinyMCE Plugin](tinymce-plugin.md#usage) / [Dojo Plugin](dojo-plugin.md#usage) |
@@ -64,8 +64,8 @@ ContentTokens allows editors to define reusable, multilingual content tokens tha
 
 ✅ **Easy to Use** - Simple `{{TokenName}}` syntax  
 ✅ **Multilingual** - Support for language-specific tokens  
-✅ **Automatic Replacement** - Works seamlessly via service layer  
-✅ **Admin UI** - Manage tokens via CMS dashboard gadget  
+✅ **Automatic Replacement** - Works seamlessly via middleware  
+✅ **Modern Blazor Admin UI** - Manage tokens via CMS admin interface  
 ✅ **TinyMCE Integration** - Rich text editor plugin with autocomplete  
 ✅ **Visual Highlighting** - Token placeholders highlighted in editor  
 ✅ **REST API** - Programmatic access for integration  

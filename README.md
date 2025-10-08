@@ -9,8 +9,8 @@ ContentTokens is an addon for Optimizely CMS v12 that enables editors to define 
 ## Features
 
 - 🌍 **Multilingual Support**: Define different token values for different languages
-- ✏️ **Easy Management**: Intuitive admin gadget for creating and editing tokens
-- 🔄 **Automatic Replacement**: Tokens are replaced automatically via service layer
+- ✏️ **Modern Blazor Admin Interface**: Intuitive Blazor-based admin UI for creating and editing tokens
+- 🔄 **Automatic Replacement**: Tokens are replaced automatically via middleware
 - 🎯 **Simple Syntax**: Use `{{TokenName}}` anywhere in your content
 - 📝 **REST API**: Full API support for programmatic token management
 - 🎨 **TinyMCE Plugin**: Rich text editor integration with autocomplete for easy token insertion
@@ -33,18 +33,21 @@ dotnet add package ContentTokens
 
 ### Configuration
 
-1. Add the ContentTokens middleware to your `Startup.cs` or `Program.cs`:
+1. Add the ContentTokens middleware and Blazor Server support to your `Program.cs`:
 
 ```csharp
 using ContentTokens.Extensions;
 
-// In your Configure/WebApplication setup
-app.UseContentTokens();
-```
+var builder = WebApplication.CreateBuilder(args);
 
-**Important**: Add the middleware after `UseRouting()` and `UseAuthentication()`, but before `UseEndpoints()`:
+// Add Blazor Server support for the admin interface
+builder.Services.AddServerSideBlazor();
 
-```csharp
+// ... other services
+
+var app = builder.Build();
+
+// Configure middleware pipeline
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -56,24 +59,33 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapRazorPages();
+    endpoints.MapBlazorHub(); // Required for Blazor admin interface
 });
+
+app.Run();
 ```
 
-2. The addon will automatically register itself with Optimizely CMS through the initialization module.
+**Important**: 
+- Add the middleware after `UseRouting()` and `UseAuthentication()`, but before `UseEndpoints()`
+- Include `AddServerSideBlazor()` and `MapBlazorHub()` for the Blazor admin interface
+- The addon will automatically register itself with Optimizely CMS through the initialization module
 
 ## Usage
 
 ### Managing Tokens via Admin UI
 
 1. Log in to the Optimizely CMS admin interface
-2. Navigate to the Dashboard
-3. Look for the "Content Tokens" gadget
+2. Navigate to **Admin** menu
+3. Click **Content Tokens**
 4. Click "Add Token" to create a new token
 5. Fill in the token details:
-   - **Token Name**: The name used in content (e.g., `CompanyName`)
+   - **Token Name**: The name used in content (e.g., `CompanyName`) - alphanumeric only
    - **Value**: The content that will replace the token
    - **Language Code**: Optional language code (e.g., `en`, `sv`, `de`) - leave empty for all languages
    - **Description**: Optional description of the token's purpose
+6. Click "Save"
+
+The modern Blazor interface provides real-time validation and clear success/error messaging.
 
 ### Using Tokens in Content
 
@@ -222,7 +234,8 @@ The addon consists of several key components:
 - **ContentToken Model**: Stores token data in Optimizely's Dynamic Data Store
 - **ContentTokenService**: Service for managing and replacing tokens
 - **ContentTokensController**: REST API for token management
-- **Admin Gadget**: Dojo-based UI widget for the Optimizely admin interface
+- **Blazor Admin Interface**: Modern server-side Blazor component for managing tokens in the CMS admin area
+- **Middleware**: Automatic token replacement in HTML responses
 
 ## Example Projects
 
