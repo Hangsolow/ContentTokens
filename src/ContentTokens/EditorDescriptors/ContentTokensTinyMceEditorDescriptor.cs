@@ -31,9 +31,9 @@ namespace ContentTokens.EditorDescriptors
             var tinyMceConfiguration = context.Locate.Advanced.GetRequiredService<TinyMceConfiguration>();
             tinyMceConfiguration.Default()
                 .AddExternalPlugin(
-                    "contentTokensPlugin",
+                    "contenttokens",
                     "/EPiServer/ContentTokens/ClientResources/Scripts/ContentTokensTinyMcePlugin.js")
-                .AppendToolbar("contentTokensPlugin", 0);
+                .AppendToolbar("contenttokens", 0);
         }
 
         /// <summary>

@@ -63,20 +63,24 @@
          */
         function setupAutocompleter() {
             editor.ui.registry.addAutocompleter('contenttokens', {
-                ch: '{{',
+                ch: '{',
                 minChars: 0,
                 columns: 1,
                 fetch: function (pattern) {
+                    // pattern includes the second '{' the user typed plus any token name chars.
+                    // Strip it so we search on the token name only (e.g. "{CompanyName" → "CompanyName").
+                    var searchTerm = pattern.replace(/^\{/, '');
                     return loadTokens().then(function (tokens) {
-                        var matchedTokens = tokens.filter(function (token) {
-                            return token.value.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
+                        return tokens.filter(function (token) {
+                            return token.value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
                         });
-                        return matchedTokens;
                     });
                 },
                 onAction: function (autocompleteApi, rng, value) {
+                    // rng covers from the trigger '{' through the current position.
+                    // Replacing it with '{{TokenName}}' produces the correct double-brace syntax.
                     editor.selection.setRng(rng);
-                    editor.insertContent(value + '}}');
+                    editor.insertContent('{{' + value + '}}');
                     autocompleteApi.hide();
                 }
             });

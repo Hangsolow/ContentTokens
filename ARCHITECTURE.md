@@ -26,8 +26,6 @@ src/ContentTokens/
 │   └── Scripts/
 │       ├── ContentTokensGadget.js  # Admin UI widget
 │       └── Initializer.js          # Client-side initialization
-└── Infrastructure/
-    └── OptimizelyStubs.cs       # Compatibility layer
 ```
 
 ### Data Storage

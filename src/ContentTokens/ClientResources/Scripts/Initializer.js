@@ -16,7 +16,7 @@ define([
             var viewSettingsStore = dependency.resolve("epi.storeregistry").get("epi.cms.viewsettings");
 
             // Register the gadget
-            viewSettingsStore.registerGadget("ContentTokens/Scripts/ContentTokensGadget", {
+            viewSettingsStore.registerGadget("ContentTokens/ContentTokensGadget", {
                 title: "Content Tokens",
                 description: "Manage reusable content tokens for use across the site",
                 plugInAreas: ["/episerver/cms/dashboard"]
