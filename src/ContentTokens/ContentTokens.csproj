@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -21,12 +21,55 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="module.config" />
-    <EmbeddedResource Include="ClientResources\**\*.*" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="12.34.2" />
+    <PackageReference Include="EPiServer.CMS.TinyMce" Version="5.0.3" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <_ModuleZipPath>$(MSBuildProjectDirectory)\..\..\build\ContentTokens.zip</_ModuleZipPath>
+    <_ModuleStagingPath>$(MSBuildProjectDirectory)\obj\module-staging\ContentTokens</_ModuleStagingPath>
+  </PropertyGroup>
+
   <ItemGroup>
+    <!-- module.config is assembled into the ZIP at build time, not embedded in the DLL -->
+    <None Include="module.config" />
+    <None Include="ClientResources\**\*.*" />
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
+
+  <!-- Pack the module ZIP into contentFiles so consumers get it via NuGet -->
+  <ItemGroup>
+    <None Include="$(_ModuleZipPath)"
+          Pack="true"
+          PackagePath="contentFiles\any\any\modules\_protected\ContentTokens\ContentTokens.zip"
+          Condition="Exists('$(_ModuleZipPath)')" />
+    <None Include="$(MSBuildProjectDirectory)\..\..\build\ContentTokens.targets"
+          Pack="true"
+          PackagePath="build\ContentTokens.targets" />
+  </ItemGroup>
+
+  <!--
+    Assemble the protected module structure and zip it before building or packing.
+    Files stay in their source locations; the ZIP is a build artifact (gitignored).
+  -->
+  <Target Name="CreateModuleZip" BeforeTargets="Build;Pack">
+    <MakeDir Directories="$(_ModuleStagingPath)" />
+
+    <ItemGroup>
+      <_ClientResourceFiles Include="$(MSBuildProjectDirectory)\ClientResources\**\*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(_ClientResourceFiles)"
+          DestinationFiles="@(_ClientResourceFiles -> '$(_ModuleStagingPath)\ClientResources\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\module.config"
+          DestinationFolder="$(_ModuleStagingPath)"
+          SkipUnchangedFiles="true" />
+
+    <ZipDirectory SourceDirectory="$(_ModuleStagingPath)"
+                  DestinationFile="$(_ModuleZipPath)"
+                  Overwrite="true" />
+  </Target>
 
 </Project>

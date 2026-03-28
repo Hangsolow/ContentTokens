@@ -301,6 +301,12 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
+# Optimizely CMS - generated module files (EPiServer NuGet restore output)
+**/modules/
+
+# ContentTokens build artifact - module ZIP created by ZipDirectory target
+build/*.zip
+
 # Visual Studio 6 build log
 *.plg
 

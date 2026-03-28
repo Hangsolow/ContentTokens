@@ -1,0 +1,12 @@
+<Project>
+  <!--
+    This targets file is automatically imported by consuming projects via NuGet conventions.
+    It copies the ContentTokens shell module ZIP into the consuming project's modules/_protected/
+    directory so Optimizely CMS can serve the module's frontend resources at runtime.
+  -->
+  <Target Name="CopyContentTokensModule" BeforeTargets="Build"
+          Condition="'$(PackageId)' != 'ContentTokens'">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\contentFiles\any\any\modules\_protected\ContentTokens\ContentTokens.zip"
+          DestinationFolder="$(MSBuildProjectDirectory)\modules\_protected\ContentTokens\" />
+  </Target>
+</Project>
